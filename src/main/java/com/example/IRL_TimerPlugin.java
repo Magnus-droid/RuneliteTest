@@ -12,17 +12,18 @@ import net.runelite.client.eventbus.Subscribe;
 import net.runelite.client.plugins.Plugin;
 import net.runelite.client.plugins.PluginDescriptor;
 
+
 @Slf4j
 @PluginDescriptor(
-	name = "Example"
+	name = "IRL Timers"
 )
-public class ExamplePlugin extends Plugin
+public class IRL_TimerPlugin extends Plugin
 {
 	@Inject
 	private Client client;
 
 	@Inject
-	private ExampleConfig config;
+	private IRL_TimerConfig config;
 
 	@Override
 	protected void startUp() throws Exception
@@ -46,8 +47,8 @@ public class ExamplePlugin extends Plugin
 	}
 
 	@Provides
-	ExampleConfig provideConfig(ConfigManager configManager)
+	IRL_TimerConfig provideConfig(ConfigManager configManager)
 	{
-		return configManager.getConfig(ExampleConfig.class);
+		return configManager.getConfig(IRL_TimerConfig.class);
 	}
 }
