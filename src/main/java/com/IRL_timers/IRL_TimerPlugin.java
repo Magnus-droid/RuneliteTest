@@ -6,7 +6,6 @@ import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 
 import net.runelite.client.util.ImageUtil;
-import net.runelite.api.Client;
 import net.runelite.api.GameState;
 import net.runelite.api.events.GameStateChanged;
 import net.runelite.client.config.ConfigManager;
@@ -21,6 +20,7 @@ import net.runelite.client.ui.ClientToolbar;
 @PluginDescriptor(
 	name = "IRL Timers"
 )
+
 public class IRL_TimerPlugin extends Plugin
 {
 
@@ -31,9 +31,6 @@ public class IRL_TimerPlugin extends Plugin
 	private ClientToolbar clientToolbar;
 
 	@Inject
-	private Client client;
-
-	@Inject
 	@Getter
 	public IRL_TimerConfig config;
 
@@ -42,7 +39,6 @@ public class IRL_TimerPlugin extends Plugin
 	{
 		panel = new IRL_TimerPanel(this);
 
-		//WORKS!!
 		navButton = NavigationButton.builder()
 				.tooltip("IRL_Timers")
 				.icon(ImageUtil.loadImageResource(getClass(), "/WhmIcon.png"))
@@ -51,14 +47,14 @@ public class IRL_TimerPlugin extends Plugin
 				.build();
 
 		clientToolbar.addNavigation(navButton);
-		log.info("Example started!");
+		log.info("IRL_timers started!");
 	}
 
 	@Override
 	protected void shutDown() throws Exception
 	{
 		clientToolbar.removeNavigation(navButton);
-		log.info("Example stopped!");
+		log.info("IRL_timers stopped!");
 	}
 
 	@Subscribe
