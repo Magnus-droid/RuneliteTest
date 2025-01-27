@@ -1,18 +1,11 @@
-package com.example;
+package com.IRL_timers;
 
 import net.runelite.client.ui.ColorScheme;
 import net.runelite.client.ui.PluginPanel;
-import net.runelite.client.config.Units;
-
-import java.time.Duration;
-import java.time.Instant;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.*;
+
 
 public class IRL_TimerPanel extends PluginPanel
 {
@@ -20,21 +13,22 @@ public class IRL_TimerPanel extends PluginPanel
     JTextField textField;
     JButton startTimerButton;
     JButton addTimerButton;
+    JButton removeTimerButton;
     JPanel title;
     JPanel base;
     String textValue;
+
 
     public IRL_TimerPanel(IRL_TimerPlugin plugin)
     {
         this.plugin = plugin; //only useful if I want to access the plugins config file. Doesn't hurt either though.
         base = new JPanel();
-        base.setLayout(new BoxLayout(base, BoxLayout.Y_AXIS));
-        base.setBorder(new EmptyBorder(10, 10, 10, 10));
+        //base.setLayout(new BoxLayout(base, BoxLayout.Y_AXIS));
+        base.setBorder(new EmptyBorder(50, 50, 50, 50));
         base.setBackground(ColorScheme.BRAND_ORANGE);
 
         title = new JPanel();
-        title.setLayout(new GridLayout(0, 1));
-        title.setBorder(new EmptyBorder(10, 10, 10, 10));
+        //title.setBorder(new EmptyBorder(10, 10, 10, 10));
         title.setBackground(ColorScheme.DARK_GRAY_COLOR);
         title.add(new JLabel("Enter a time in minutes."));
 
@@ -48,13 +42,19 @@ public class IRL_TimerPanel extends PluginPanel
             addTimer();
         });
 
+        removeTimerButton = new JButton("-");
+        removeTimerButton.addActionListener(e -> {
+            removeTimer(base);
+        });
+
         textField = new JTextField();
 
         base.add(textField);
         base.add(title);
+        base.add(startTimerButton);
+        base.add(addTimerButton);
+        base.add(removeTimerButton);
         add(base);
-        add(startTimerButton);
-        add(addTimerButton);
     }
 
     public void startTimer()
@@ -76,6 +76,7 @@ public class IRL_TimerPanel extends PluginPanel
     public void removeTimer(JPanel timerPanel)
     {
         //TODO: Remove the selected JPanel and unset the variables for the related timer
+        timerPanel.removeAll();
         repaint();
         revalidate();
     }

@@ -1,14 +1,10 @@
-package com.example;
+package com.IRL_timers;
 
 import com.google.inject.Provides;
-
-import javax.imageio.ImageIO;
 import javax.inject.Inject;
-
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
-import net.runelite.api.ChatMessageType;
-import java.awt.image.BufferedImage;
+
 import net.runelite.client.util.ImageUtil;
 import net.runelite.api.Client;
 import net.runelite.api.GameState;
@@ -71,18 +67,13 @@ public class IRL_TimerPlugin extends Plugin
 		if (gameStateChanged.getGameState() != GameState.LOGGED_IN)
 		{
 
-			removeTimer();
+
 			//set variables to default
 
 			//Leftovers from example plugin: client.addChatMessage(ChatMessageType.GAMEMESSAGE, "", "Example says " + Instant.now(), null);
 		}
 	}
 
-
-	private void removeTimer()
-	{
-
-	}
 
 	@Provides
 	IRL_TimerConfig provideConfig(ConfigManager configManager)
